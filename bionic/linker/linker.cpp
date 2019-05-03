@@ -4450,9 +4450,9 @@ extern "C" ElfW(Addr) __linker_init(void* raw_args) {
     exit(0);
   }
 
-  linker_so.base = linker_addr;
-  linker_so.size = phdr_table_get_load_size(phdr, elf_hdr->e_phnum);
-  linker_so.load_bias = get_elf_exec_load_bias(elf_hdr);
+  linker_so.base = linker_addr;		// base表示linker的装载地址
+  linker_so.size = phdr_table_get_load_size(phdr, elf_hdr->e_phnum);	// 所有可加载的段的总大小
+  linker_so.load_bias = get_elf_exec_load_bias(elf_hdr);		//为了将虚拟地址映射到物理地址的偏移值
   linker_so.dynamic = nullptr;
   linker_so.phdr = phdr;
   linker_so.phnum = elf_hdr->e_phnum;
